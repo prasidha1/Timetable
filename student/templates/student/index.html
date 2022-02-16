@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+       <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Timetable</title>
+
+    <style>
+      .form-group {
+      padding: 30px 40px;
+      background-color: #D3D3D3;
+    }
+    </style>
+    </head>
+    <body>
+      
+    <nav class="navbar navbar-light bg-warning ">
+          <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+          <a class="navbar-brand" href="{% url 'program' %}">Programme</a>
+          <a class="navbar-brand" href="{% url 'centre' %}">Centre</a>
+          <a class="navbar-brand" href="{% url 'professor' %}">Professor</a>
+    </nav>
+    <br>
+    <br>
+   <div class="container">
+   <h3>Timetable input</h3>
+    <form method="POST" class="post-form">
+    {% csrf_token %}
+    <div class="form-group">
+      {{form.as_p}}
+      <button type="submit" class="save btn btn-warning">Save</button>
+      <a class="btn btn-warning" href="{% url 'Timetable' %}" role="button">Timetable</a>
+    </div> 
+    </form>
+    
+  </div>
+  </body>
+</html>

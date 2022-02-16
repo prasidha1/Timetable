@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <title>Professor</title>
+ 
+    <style>
+       .form-group {
+       padding: 30px 40px;
+       background-color: #D3D3D3;
+     }
+     body{
+        margin-top:20px;
+    }
+    .bg-light-gray {
+    background-color: #f7f7f7;
+    }
+    .table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+    }
+    .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    }
+    .table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+    }
+    .bg-sky.box-shadow {
+    box-shadow: 0px 5px 0px 0px #00a2a7
+    }
+    .bg-orange.box-shadow {
+    box-shadow: 0px 5px 0px 0px #af4305
+    }
+
+.bg-green.box-shadow {
+    box-shadow: 0px 5px 0px 0px #4ca520
+}
+
+.bg-yellow.box-shadow {
+    box-shadow: 0px 5px 0px 0px #dcbf02
+}
+
+.bg-pink.box-shadow {
+    box-shadow: 0px 5px 0px 0px #e82d8b
+}
+
+.bg-purple.box-shadow {
+    box-shadow: 0px 5px 0px 0px #8343e8
+}
+
+.bg-lightred.box-shadow {
+    box-shadow: 0px 5px 0px 0px #d84213
+}
+
+
+.bg-sky {
+    background-color: #02c2c7
+}
+
+.bg-orange {
+    background-color: #e95601
+}
+
+.bg-green {
+    background-color: #5bbd2a
+}
+
+.bg-yellow {
+    background-color: #f0d001
+}
+
+.bg-pink {
+    background-color: #ff48a4
+}
+
+.bg-purple {
+    background-color: #9d60ff
+}
+
+.bg-lightred {
+    background-color: #ff5722
+}
+
+.padding-15px-lr {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.padding-5px-tb {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.margin-10px-bottom {
+    margin-bottom: 10px;
+}
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.margin-10px-top {
+    margin-top: 10px;
+}
+.font-size14 {
+    font-size: 14px;
+}
+
+.text-light-gray {
+    color: #d6d5d5;
+}
+.font-size13 {
+    font-size: 13px;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-warning ">
+        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        <a class="navbar-brand" href="{% url 'program' %}">Programme</a>
+        <a class="navbar-brand" href="{% url 'centre' %}">Centre</a>
+        <a class="navbar-brand" href="{% url 'professor' %}">Professor</a>
+  </nav>
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="timetable-img text-center">
+        <img src="img/content/timetable.png" alt="">
+    </div>
+
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    
+        
+    
+
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light-gray">
+                    <th class="text-uppercase">Time</th>
+                    <th class="text-uppercase">Monday</th>
+                    <th class="text-uppercase">Tuesday</th>
+                    <th class="text-uppercase">Wednesday</th>
+                    <th class="text-uppercase">Thursday</th>
+                    <th class="text-uppercase">Friday</th>
+                    <th class="text-uppercase">Saturday</th>
+                    <th class="text-uppercase">Sunday</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                
+                {% for student in filter.qs %}
+                
+                <tr>
+                   
+                <td>
+                    <p>{{student.start_time}}-{{student.end_time}}</p>
+                   
+                </td>
+                
+                <td>
+                    {% for da in student.day %}
+                    {%if da == "Monday" %}
+                       <p>{{student.program}}</p>
+                       <p>{{student.batch}}</p>  
+                     
+                    {% endif %} 
+                    {% endfor %}
+               </td>
+               </td>
+               <td>
+                {% for da in student.day %}
+                   {%if da == "Tuesday" %}
+                       <p>{{student.program}}</p> 
+                       <p>{{student.batch}}</p> 
+             
+                   {% endif %}
+                   {% endfor %} 
+               </td>
+               <td>
+                {% for da in student.day %}
+                   {%if da == "Wednesday" %}
+                       <p>{{student.program}}</p>
+                       <p>{{student.batch}}</p>  
+             
+                   {% endif %}
+                   {% endfor %}
+               </td>
+               <td>
+                {% for da in student.day %}
+                   {%if da == "Thursday" %}
+                       <p>{{student.program}}</p>
+                       <p>{{student.batch}}</p>  
+             
+                   {% endif %}
+                   {% endfor %}
+               </td>
+               <td>
+                {% for da in student.day %}
+                   {%if da == "Friday" %}
+                       <p>{{student.program}}</p>
+                       <p>{{student.batch}}</p> 
+             
+                   {% endif %}
+                   {% endfor %}
+               </td>
+               <td>
+                {% for da in student.day %}
+                   {%if da == "Saturday" %}
+                       <p>{{student.program}}</p>
+                       <p>{{student.batch}}</p>  
+             
+                   {% endif %}
+                   {% endfor %}
+               </td>
+               <td>
+                {% for da in student.day %}
+                   {%if da == "Sunday" %}
+                       <p>{{student.program}}</p>
+                       <p>{{student.batch}}</p>  
+             
+                   {% endif %}
+                   {% endfor %}
+               </td>
+                </tr>
+               
+                
+    {% endfor %}
+ </tbody>
+
+
+</body>
+</html>
