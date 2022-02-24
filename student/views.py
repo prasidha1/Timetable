@@ -5,7 +5,7 @@ from student.forms import ActivityForm,ProgramForm, ProfessorForm, CentreForm
 from student.models import Activity
 from django.shortcuts import (get_object_or_404,
                               render,
-                              HttpResponseRedirect)
+                              redirect)
 
 
 
@@ -75,30 +75,10 @@ def TimeTableView(request):
            
     return render(request, 'student/TimeTable.html', {'students':students, 'filter': filter})
 
-def delete_view(request, id):
-    # dictionary for initial data with
-    # field names as keys
-    context ={}
- 
-    # fetch the object related to passed id
-    obj = get_object_or_404(Activity, id = id)
- 
- 
-    if request.method =="POST":
-        # delete object
-        obj.delete()
-        # after deleting redirect to
-        # home page
-        return HttpResponseRedirect("/")
- 
-    return render(request, "delete_view.html", context)
-
-# def TimeTableView(request, pk):
-    
-#     students = Activity.objects.get(id=pk)
-#     orders = students.order_set.all()
-#     tableFilter = ActivityFilter(request.GET, queryset=orders)
-#     orders = ActivityFilter.qs
-#     context = {'orders': orders, 'tableFilter': tableFilter}
-#     return render(request, 'student/TimeTable.html', context)
-
+def delete_activity(request,pk):
+    students = Activity.objects.all().order_by('start_time')
+    if request.method == "POST" or request.method == "DELETE":
+        
+        Activity.objects.filter(pk=pk).delete()
+        
+    return redirect('Timetable')
