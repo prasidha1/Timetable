@@ -5,6 +5,9 @@
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    
     <!-- Latest compiled and minified JavaScript -->
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
      <title>Professor</title>
@@ -133,6 +136,7 @@
         <a class="navbar-brand" href="{% url 'program' %}">Programme</a>
         <a class="navbar-brand" href="{% url 'centre' %}">Centre</a>
         <a class="navbar-brand" href="{% url 'professor' %}">Professor</a>
+        <a class="navbar-brand" href="{% url 'Timetable' %}">Timetable</a>
   </nav>
   <br>
   <br>
@@ -175,6 +179,10 @@
                    
                 <td>
                     <p>{{student.start_time}}-{{student.end_time}}</p>
+                    <form method="POST" action="{% url 'delete_activity' pk=student.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete Activity</button>
+                    </form>
                    
                 </td>
                 
